@@ -123,6 +123,9 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
+    mpxj (12.1.1)
+      activesupport
+      json
     msgpack (1.7.2)
     net-imap (0.3.7)
       date
@@ -257,6 +260,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
+  mpxj (~> 12.1)
   pg (~> 1.1)
   pry (~> 0.14.2)
   puma (~> 5.0)
