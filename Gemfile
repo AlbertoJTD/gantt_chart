@@ -60,6 +60,15 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  # Debug app
+  gem "pry", "~> 0.14.2"
+
+  # Genarate schema
+  gem "annotate", "~> 3.2"
+
+  # Code formatting tool
+  gem "rubocop", "~> 1.56"
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
