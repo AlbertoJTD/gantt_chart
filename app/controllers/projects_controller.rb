@@ -1,23 +1,51 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
-  def index; end
+  before_action :set_project, only: %i[show edit update destroy]
+  def index
+    @projects = Project.all
+  end
 
-  def new; end
+  def new
+    @project = Project.new
+  end
 
-  def create; end
+  def create
+    @project = Project.new(project_params)
 
-  def edit; end
-
-  def update; end
+    if @project.save
+      # flash[:success] = 'Object successfully created'
+      redirect_to projects_path, notice: 'Project created'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def show; end
 
-  def destroy; end
+  def edit; end
+
+  def update
+    if @project.update(project_params)
+      redirect_to edit_project_path(@project), notice: 'Project updated successfully'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @project.destroy
+
+    redirect_to projects_path, notice: 'Project destroyed'
+  end
 
   private
 
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
   def project_params
-    params.require(:category).permit(:name, :start_date, :end_date)
+    params.require(:project).permit(:name, :start_date, :end_date, :file)
   end
 end

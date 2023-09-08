@@ -1,0 +1,10 @@
+<%= link_to 'go back', projects_path, class: 'underline' %>
+
+<div>
+  <%= @project.name %>
+  <%= @project.start_date %>
+  <%= @project.end_date %>
+</div>
+
+<%= link_to 'Edit project', edit_project_path(@project), class: 'underline' %>
+<%= link_to 'Delete project', project_path(@project), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this project?' }, class: 'underline' %>

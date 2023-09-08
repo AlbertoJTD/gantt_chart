@@ -1,0 +1,23 @@
+<%= form_with model: project do |form| %>
+  <div>
+    <%= form.label :name, class: 'text-bold' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, class: 'text-bold' %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, class: 'text-bold' %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :file, class: 'text-bold' %>
+    <%= form.file_field :file %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

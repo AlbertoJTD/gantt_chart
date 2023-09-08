@@ -12,4 +12,5 @@
 #  updated_at :datetime         not null
 #
 class Project < ApplicationRecord
+  has_one_attached :file
 end

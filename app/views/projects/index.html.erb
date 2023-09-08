@@ -1,3 +1,10 @@
-<h1>This is the index view for projects</h1>
+<%= link_to "Create new project", new_project_path, class: 'underline hover:bg-blue-100 rounded' %>
 
-<%= link_to "Create new project", new_project_path %>
+<div class="mt-5">  
+  <% if @projects.count > 0 %>
+    <h1 class="font-bold text-2xl">Projects</h1>
+    <%= render partial: 'project', collection: @projects %>
+  <% else %>
+    <p>No projects to display</p>
+  <% end %>
+</div>
