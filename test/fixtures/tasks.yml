@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id          :bigint           not null, primary key
+#  completed   :boolean          default(FALSE)
+#  description :text
+#  end_date    :datetime         not null
+#  name        :string           not null
+#  start_date  :datetime         not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  project_id  :bigint           not null
+#
+# Indexes
+#
+#  index_tasks_on_project_id  (project_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (project_id => projects.id)
+#
+
+one:
+  name: MyString
+  description: MyText
+  start_date: 2023-09-07 23:03:12
+  end_date: 2023-09-07 23:03:12
+  completed: false
+  project: one
+
+two:
+  name: MyString
+  description: MyText
+  start_date: 2023-09-07 23:03:12
+  end_date: 2023-09-07 23:03:12
+  completed: false
+  project: two
