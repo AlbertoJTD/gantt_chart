@@ -13,4 +13,6 @@
 #
 class Project < ApplicationRecord
   has_one_attached :file
+
+  has_many :tasks, dependent: :destroy
 end

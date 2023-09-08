@@ -1,0 +1,28 @@
+<%= form_with model: task, url: project_tasks_path  do |form| %>
+  <div>
+    <%= form.label :name, class: 'text-bold' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: 'text-bold' %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, class: 'text-bold' %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, class: 'text-bold' %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :completed, class: 'text-bold' %>
+    <%= form.select :completed, [["Completed", true], ["Uncompleted", false]], {}, { :class => '' } %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

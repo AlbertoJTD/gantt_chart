@@ -24,4 +24,6 @@
 #
 class Task < ApplicationRecord
   belongs_to :project
+
+  has_one :task_dependency
 end
