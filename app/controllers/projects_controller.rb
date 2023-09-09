@@ -13,8 +13,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    # url_for(user.avatar)
-    # url_for(@project.file)
+
     if @project.save
       require 'active_support'
       require 'mpxj'
@@ -22,8 +21,6 @@ class ProjectsController < ApplicationController
       file_path = ActiveStorage::Blob.service.send(:path_for, @project.file.key)
 
       project = MPXJ::Reader.read(file_path, nil, :days)
-      # project = MPXJ::Reader.read(@archivo_path, nil, :days)
-      # project = MPXJ::Reader.read('DemoProject.mpp', nil, :days)
 
       puts "There are #{project.all_tasks.size} tasks in this project"
       puts "There are #{project.all_resources.size} resources in this project"
@@ -33,7 +30,7 @@ class ProjectsController < ApplicationController
         puts resource.name
       end
 
-      puts "The tasks are:"
+      puts 'The tasks are:'
       project.all_tasks.each do |task|
         # puts task.properties
         # break
