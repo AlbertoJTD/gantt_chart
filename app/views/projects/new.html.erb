@@ -1,7 +1,11 @@
 <div>
-  <%= link_to 'go back', projects_path, class: 'underline' %>
+  <div>
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6x text-center">
+      Import and visualize your <span class="text-blue-600">Microsoft Project</span> in a <span class="text-teal-500">Gantt Chart</span>
+    </h1>
 
-  <h1 class="font-bold text-2xl mt-5">Create project</h1>
-
-  <%= render 'form', project: @project %>
+    <div class="flex justify-center items-center mt-24">
+      <%= render 'file', project: @project %>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'projects#index'
+  root 'projects#new'
 
   resources :projects do
     resources :tasks do

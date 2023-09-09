@@ -15,8 +15,8 @@
   </div>
 
   <div>
-    <%= form.label :file, class: 'text-bold' %>
-    <%= form.file_field :file %>
+    <%= form.label :file, 'Choose a file to upload: ', class: 'text-gray-700 font-bold' %>
+    <%= form.file_field :file, class: 'border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
   </div>
 
   <%= form.submit %>

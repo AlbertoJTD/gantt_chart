@@ -3,9 +3,9 @@
 # Table name: projects
 #
 #  id         :bigint           not null, primary key
-#  end_date   :datetime         not null
-#  name       :string           not null
-#  start_date :datetime         not null
+#  end_date   :datetime
+#  name       :string
+#  start_date :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
