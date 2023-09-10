@@ -4,15 +4,16 @@
 #
 # Table name: tasks
 #
-#  id          :bigint           not null, primary key
-#  completed   :boolean          default(FALSE)
-#  description :text
-#  end_date    :datetime         not null
-#  name        :string           not null
-#  start_date  :datetime         not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  project_id  :bigint           not null
+#  id                   :bigint           not null, primary key
+#  completed            :boolean          default(FALSE)
+#  description          :text
+#  end_date             :datetime         not null
+#  name                 :string           not null
+#  percentage_completed :integer          default(0), not null
+#  start_date           :datetime         not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  project_id           :bigint           not null
 #
 # Indexes
 #
