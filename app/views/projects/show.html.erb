@@ -29,17 +29,29 @@
     <div class="flex flex-col mt-3"></div>
     <h2 class="font-bold text-xl">My tasks</h2>
 
-    <% @tasks.each do |task| %>
-      <ol>
-        <li>
-          <%= link_to project_task_path(task.project_id, task.id), class: 'underline' do %>
-            <%= task.name %>
+    <div class="px-10 py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">    
+        <% @tasks.each do |task| %>
+          <%= link_to project_task_path(task.project_id, task.id), class: 'block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-200' do %>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"><%= task.name %></h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400"><%= task.description %></p>
+
+            <div class="inline-flex items-center py-2 text-sm font-medium text-center rounded-lg">
+              <% if task.completed %>
+                  <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Completed</span>
+              <% else %>
+                  <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Incompleted</span>
+              <% end %>
+              <%# <span class="bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">Dark</span> %>
+            </div>
           <% end %>
-        </li>
-      </ol>
-    <% end %>
+        <% end %>
+      </div>
+    </div>
+
     
   <% else %>
     <p>There is no tasks associate with this project</p>
   <% end %>
 </div>
+
