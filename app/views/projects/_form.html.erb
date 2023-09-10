@@ -1,23 +1,23 @@
 <%= form_with model: project do |form| %>
-  <div>
-    <%= form.label :name, class: 'text-bold' %>
-    <%= form.text_field :name %>
+  <div class="mb-6">
+    <%= form.label :name, class: 'inline-block font-bold text-lg mb-2 text-gray-700' %>
+    <%= form.text_field :name, class: 'border border-gray-200 rounded p-2 w-full', required: true, placeholder: 'Project name' %>
   </div>
 
-  <div>
-    <%= form.label :start_date, class: 'text-bold' %>
-    <%= form.date_field :start_date %>
+  <div class="mb-6">
+    <%= form.label :start_date, class: 'inline-block text-lg font-bold mb-2 text-gray-700' %>
+    <%= form.date_field :start_date, class: 'border border-gray-200 rounded p-2 w-full' %>
+    <p class="text-red-500 text-sm mt-1">Error message</p>
   </div>
 
-  <div>
-    <%= form.label :end_date, class: 'text-bold' %>
-    <%= form.date_field :end_date %>
+  <div class="mb-6">
+    <%= form.label :end_date, class: 'inline-block text-lg font-bold mb-2 text-gray-700' %>
+    <%= form.date_field :end_date, class: 'border border-gray-200 rounded p-2 w-full' %>
+    <p class="text-red-500 text-sm mt-1">Error message</p>
   </div>
 
-  <div>
-    <%= form.label :file, 'Choose a file to upload: ', class: 'text-gray-700 font-bold' %>
-    <%= form.file_field :file, class: 'border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+  <div class="flex justify-end">
+    <%= link_to 'Back to projects', projects_path, class: 'text-blue-400 underline ml-4 hover:text-blue-700 py-2 px-4 rounded' %>
+    <%= form.submit class: 'mr-3 rounded-md cursor-pointer bg-blue-100 px-5 py-2 px-10 hover:bg-blue-300 font-bold' %>
   </div>
-
-  <%= form.submit %>
 <% end %>
