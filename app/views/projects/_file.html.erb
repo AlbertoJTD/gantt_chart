@@ -1,4 +1,9 @@
 <%= form_with model: project do |form| %>
+  <div class="mb-5 flex justify-center items-center">
+    <%= form.label :name, class: 'text-gray-700 font-bold text-xl' %>
+    <%= form.text_field :name, class: 'border rounded-lg py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', required: true, placeholder: 'Project name' %>
+  </div>
+
   <div class="inline mb-5">
     <%= form.label :file, 'Choose a file to upload: ', class: 'text-gray-700 font-bold text-xl' %>
     <%= form.file_field :file, class: 'border rounded-lg py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', required: true, accept: '.mpp' %>

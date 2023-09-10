@@ -15,27 +15,8 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      require 'active_support'
-      require 'mpxj'
+      MppFileHandler.new(@project).read_project
 
-      file_path = ActiveStorage::Blob.service.send(:path_for, @project.file.key)
-
-      project = MPXJ::Reader.read(file_path, nil, :days)
-
-      puts "There are #{project.all_tasks.size} tasks in this project"
-      puts "There are #{project.all_resources.size} resources in this project"
-
-      puts "\nThe resources are:"
-      project.all_resources.each do |resource|
-        puts resource.name
-      end
-
-      puts 'The tasks are:'
-      project.all_tasks.each do |task|
-        # puts task.properties
-        # break
-        puts "* #{task.name}: starts on #{task.start}, finishes on #{task.finish}, it's duration is #{task.duration}, the percentage completed is: #{task.percent_complete}"
-      end
       redirect_to projects_path, notice: 'Project created'
     else
       render :new, status: :unprocessable_entity
