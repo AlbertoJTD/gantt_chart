@@ -32,22 +32,22 @@ class MppFileHandler
   def create_tasks!
     project_file_info.each do |task|
       Task.create(name: task.name, start_date: task.start, end_date: task.finish, completed: task_completed?(task),
-                  project_id: @project.id)
+                  project_id: @project.id, percentage_completed: task.percent_complete)
 
       if task.child_tasks
         task.child_tasks.each do |child|
           Task.create(name: child.name, start_date: child.start, end_date: child.finish, completed: task_completed?(child),
-                      project_id: @project.id)
+                      project_id: @project.id, percentage_completed: child.percent_complete)
 
           if child.child_tasks
             child.child_tasks.each do |sub_task|
               Task.create(name: sub_task.name, start_date: sub_task.start, end_date: sub_task.finish, completed: task_completed?(sub_task),
-                          project_id: @project.id)
+                          project_id: @project.id, percentage_completed: sub_task.percent_complete)
 
               if sub_task.child_tasks
                 sub_task.child_tasks.each do |another_task|
                   Task.create(name: another_task.name, start_date: another_task.start, end_date: another_task.finish, completed: task_completed?(another_task),
-                              project_id: @project.id)
+                              project_id: @project.id, percentage_completed: another_task.percent_complete)
                 end
               end
             end
