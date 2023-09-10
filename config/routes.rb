@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :tasks do
       # resources :taskdependencies, only: %i[create update destroy edit]
     end
+    resources :gantt_chart, only: :index
   end
 end
