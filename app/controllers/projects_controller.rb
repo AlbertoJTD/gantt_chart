@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      MppFileHandler.new(@project).read_project
+      MppFileHandlerService.new(@project).read_project
 
       redirect_to projects_path, notice: 'Project created'
     else
