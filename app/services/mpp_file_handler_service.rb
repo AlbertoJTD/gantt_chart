@@ -1,4 +1,4 @@
-class MppFileHandler
+class MppFileHandlerService
   require 'active_support'
   require 'mpxj'
 
