@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MppFileHandlerService
   require 'active_support'
   require 'mpxj'
@@ -37,10 +39,10 @@ class MppFileHandlerService
 
   def create_tasks_recursive(task, project_id, parent = nil)
     project_task = Task.create(name: task.name, start_date: task.start, end_date: task.finish, completed: task_completed?(task),
-                project_id: project_id, percentage_completed: task.percent_complete, parent_id: parent)
+                               project_id:, percentage_completed: task.percent_complete, parent_id: parent)
 
     return unless task.child_tasks
-    
+
     task.child_tasks.each do |child|
       create_tasks_recursive(child, project_id, project_task.id)
     end
