@@ -31,10 +31,6 @@ class Task < ApplicationRecord
 
   has_many :task_dependency
 
-  # Relation between task and itself
-  # belongs_to :parent, class_name: "Task", optional: true
-  # has_many :subtasks, class_name: "Task", foreign_key: "parent_id"
-
   validates :name, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
