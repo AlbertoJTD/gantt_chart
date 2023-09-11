@@ -3,7 +3,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[edit update show destroy]
 
-  def index; end
+  def index
+    project_taks = project.tasks
+    respond_to do |format|
+      format.json { render json: project_taks, status: :ok }
+    end
+  end
 
   def new
     @task = Task.new

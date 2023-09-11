@@ -1,4 +1,48 @@
-<div data-controller="calendar">
-  <h1 class="font-bold text-4xl">GanttChart#index</h1>
+<div>
+  <h1 class="font-bold text-4xl" >GanttChart#index</h1>
   <p>Find me in app/views/gantt_chart/index.html.erb</p>
+  
+  <svg id="gantt" data-controller="chart--gantt" name="<%= params[:project_id] %>"></svg>
+
+  <script>
+    var tasks = []
+    const projectId = document.getElementById('gantt').attributes['name'].value
+
+    function getTasks() {
+      const authenticityToken = document.querySelector("meta[name='csrf-token']").getAttribute('content');
+      fetch(`${window.location.protocol}//${window.location.host}/projects/${projectId}/tasks`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': authenticityToken
+        }
+      })    
+      .then((response) => response.json())
+      .then(data => {
+        data.forEach(taskData => {
+          var task = {
+            id: taskData.id,
+            name: taskData.name,
+            start: taskData.start_date,
+            end: taskData.end_date,
+            progress: taskData.percentage_completed
+            // dependencies: taskData.dependencies
+          };
+
+          tasks.push(task);
+        });
+
+        initializeGantt();
+      });
+    }
+
+    function initializeGantt() {
+      var gantt = new Gantt("#gantt", tasks);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      getTasks();
+    });
+  </script>
+
 </div>
