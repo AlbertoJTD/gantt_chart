@@ -8,6 +8,9 @@ export default class extends Controller {
 
   connect() {
     const ganttContainer = this.element;
+
+    gantt.config.date_format = "%Y-%m-%d %H:%i:%s"; 
     gantt.init(ganttContainer);
+    gantt.load(`/api/data/${this.projectValue}`);
   }
 }

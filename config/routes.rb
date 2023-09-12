@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   end
 
   scope '/api' do
-    get '/data/:project_id', to: 'gantt#data'
+    get '/data/:project_id', to: 'gantt_chart#data'
   end 
 end

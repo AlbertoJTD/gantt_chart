@@ -30,7 +30,10 @@
 class Task < ApplicationRecord
   belongs_to :project
 
-  has_many :task_dependency
+  belongs_to :parent, class_name: 'Task', optional: true
+  has_many :subtasks, class_name: 'Task', foreign_key: 'parent_id', dependent: :destroy
+
+  has_many :task_dependency, dependent: :destroy
 
   validates :name, presence: true
   validates :start_date, presence: true
