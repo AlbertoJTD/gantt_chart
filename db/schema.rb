@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_034648) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_175818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_034648) do
     t.string "link_type", limit: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "project_id", null: false
+    t.index ["project_id"], name: "index_links_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -86,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_034648) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "links", "projects"
   add_foreign_key "task_dependencies", "tasks"
   add_foreign_key "task_dependencies", "tasks", column: "depends_on_task_id"
   add_foreign_key "tasks", "projects"
