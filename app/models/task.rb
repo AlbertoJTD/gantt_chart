@@ -35,6 +35,9 @@ class Task < ApplicationRecord
 
   has_many :task_dependency, dependent: :destroy
 
+  has_many :source_links, class_name: 'Link', foreign_key: :source_id, dependent: :destroy
+  has_many :target_links, class_name: 'Link', foreign_key: :target_id, dependent: :destroy
+
   validates :name, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true

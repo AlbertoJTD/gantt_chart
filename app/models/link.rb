@@ -24,4 +24,7 @@
 #
 class Link < ApplicationRecord
   belongs_to :project
+
+  belongs_to :source_task, class_name: 'Task', foreign_key: 'source_id'
+  belongs_to :target_task, class_name: 'Task', foreign_key: 'target_id'
 end
