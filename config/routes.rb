@@ -9,4 +9,8 @@ Rails.application.routes.draw do
     end
     resources :gantt_chart, only: :index
   end
+
+  scope '/api' do
+    get '/data/:project_id', to: 'gantt#data'
+  end 
 end
