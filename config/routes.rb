@@ -16,5 +16,9 @@ Rails.application.routes.draw do
     post '/task', to: 'tasks#add'
     put '/task/:id', to: 'tasks#update'
     delete '/task/:id', to: 'tasks#delete'
+
+    post '/link', to: 'link#add'
+    put '/link/:id', to: 'link#update'
+    delete '/link/:id', to: 'link#delete'
   end 
 end

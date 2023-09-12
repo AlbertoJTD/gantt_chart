@@ -7,7 +7,7 @@ class GanttChartController < ApplicationController
 
   def data 
     tasks = Project.find(params[:project_id]).tasks
-    # links = Link.all
+    links = Link.all
  
     render :json=>{
       :data => tasks.map { |task| {
@@ -20,12 +20,12 @@ class GanttChartController < ApplicationController
           :open => true
         }
       },
-      # :links => links.map{|link|{
-      #   :id => link.id,
-      #   :source => link.source,
-      #   :target => link.target,
-      #   :type => link.link_type
-      # }}
+      :links => links.map{|link|{
+        :id => link.id,
+        :source => link.source,
+        :target => link.target,
+        :type => link.link_type
+      }}
     }
   end
 end
