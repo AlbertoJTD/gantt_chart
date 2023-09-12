@@ -7,6 +7,7 @@
 #  id                   :bigint           not null, primary key
 #  completed            :boolean          default(FALSE)
 #  description          :text
+#  duration             :integer          not null
 #  end_date             :datetime         not null
 #  name                 :string           not null
 #  percentage_completed :integer          default(0), not null
