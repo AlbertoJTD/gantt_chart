@@ -9,4 +9,16 @@ Rails.application.routes.draw do
     end
     resources :gantt_chart, only: :index
   end
+
+  scope '/api' do
+    get '/data/:project_id', to: 'gantt_chart#data'
+
+    post '/task', to: 'tasks#add'
+    put '/task/:id', to: 'tasks#update'
+    delete '/task/:id', to: 'tasks#delete'
+
+    post '/link', to: 'link#add'
+    put '/link/:id', to: 'link#update'
+    delete '/link/:id', to: 'link#delete'
+  end 
 end

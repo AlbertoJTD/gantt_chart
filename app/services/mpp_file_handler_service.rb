@@ -38,7 +38,7 @@ class MppFileHandlerService
   end
 
   def create_tasks_recursive(task, project_id, parent = nil)
-    project_task = Task.create(name: task.name, start_date: task.start, end_date: task.finish, completed: task_completed?(task),
+    project_task = Task.create(name: task.name, start_date: task.start, end_date: task.finish, duration: task.duration, completed: task_completed?(task),
                                project_id:, percentage_completed: task.percent_complete, parent_id: parent)
 
     return unless task.child_tasks

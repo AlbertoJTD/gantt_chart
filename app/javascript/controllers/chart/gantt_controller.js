@@ -1,24 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
-// import Gantt from "frappe-gantt"
 
 // Connects to data-controller="chart--gantt"
 export default class extends Controller {
+  static values = {
+    project: Number
+  }
+
   connect() {
-    // console.log('Hello from chart--gantt');
+    const ganttContainer = this.element;
 
-    // console.log(this.element);
+    gantt.config.date_format = "%Y-%m-%d %H:%i:%s"; 
+    gantt.init(ganttContainer);
+    gantt.load(`/api/data/${this.projectValue}`);
 
-    // const tasks = [
-    //   {
-    //   id: 'Task 1',
-    //   name: 'Redesign website',
-    //   start: '2016-12-28',
-    //   end: '2016-12-31',
-    //   progress: 20,
-    //   dependencies: 'Task 2, Task 3'
-    //   },
-    // ]
-
-    // const gantt = new Gantt("#gantt", tasks);
+    var dp = new gantt.dataProcessor(`/api`);
+    dp.init(gantt);
+    dp.setTransactionMode("REST");
   }
 }

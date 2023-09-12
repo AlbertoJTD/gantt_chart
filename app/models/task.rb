@@ -7,6 +7,7 @@
 #  id                   :bigint           not null, primary key
 #  completed            :boolean          default(FALSE)
 #  description          :text
+#  duration             :integer          not null
 #  end_date             :datetime         not null
 #  name                 :string           not null
 #  percentage_completed :integer          default(0), not null
@@ -29,7 +30,13 @@
 class Task < ApplicationRecord
   belongs_to :project
 
-  has_many :task_dependency
+  belongs_to :parent, class_name: 'Task', optional: true
+  has_many :subtasks, class_name: 'Task', foreign_key: 'parent_id', dependent: :destroy
+
+  has_many :task_dependency, dependent: :destroy
+
+  has_many :source_links, class_name: 'Link', foreign_key: :source_id, dependent: :destroy
+  has_many :target_links, class_name: 'Link', foreign_key: :target_id, dependent: :destroy
 
   validates :name, presence: true
   validates :start_date, presence: true
