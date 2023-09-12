@@ -22,8 +22,8 @@ class GanttChartController < ApplicationController
       },
       :links => links.map{|link|{
         :id => link.id,
-        :source => link.source,
-        :target => link.target,
+        :source => link.source_id,
+        :target => link.target_id,
         :type => link.link_type
       }}
     }
