@@ -12,5 +12,9 @@ Rails.application.routes.draw do
 
   scope '/api' do
     get '/data/:project_id', to: 'gantt_chart#data'
+
+    post '/task', to: 'tasks#add'
+    put '/task/:id', to: 'tasks#update'
+    delete '/task/:id', to: 'tasks#delete'
   end 
 end

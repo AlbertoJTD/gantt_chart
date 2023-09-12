@@ -24,16 +24,49 @@ class TasksController < ApplicationController
 
   def edit; end
 
-  def update; end
-
   def show; end
 
-  def destroy; end
+  # def destroy; end
+
+  # API Methods
+  protect_from_forgery
+
+  def update
+    task.name = params["text"]
+    task.start_date = params["start_date"]
+    task.duration = params["duration"]
+    task.percentage_completed = params["progress"] || 0
+    task.parent_id = params["parent"]
+    task.save
+
+    render :json => {:action => "updated"}
+  end
+
+  def add
+    task_created = task.create( 
+      :name => params["text"], 
+      :start_date=> params["start_date"], 
+      :duration => params["duration"],
+      :percentage_completed => params["progress"] || 0, 
+      :parent_id => params["parent"]
+    )
+
+    render :json => {:action => "inserted", :tid => task_created.id}
+  end
+
+  def delete
+    task.destroy
+    render :json => {:action => "deleted"}
+  end
 
   private
 
   def project
     @project ||= Project.find(params[:project_id])
+  end
+
+  def task
+    @task ||= Task.find(params[:id])
   end
 
   def set_task

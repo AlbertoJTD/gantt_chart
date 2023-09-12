@@ -12,5 +12,9 @@ export default class extends Controller {
     gantt.config.date_format = "%Y-%m-%d %H:%i:%s"; 
     gantt.init(ganttContainer);
     gantt.load(`/api/data/${this.projectValue}`);
+
+    var dp = new gantt.dataProcessor(`/api`);
+    dp.init(gantt);
+    dp.setTransactionMode("REST");
   }
 }
