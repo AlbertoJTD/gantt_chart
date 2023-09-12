@@ -1,48 +1,18 @@
-<div>
-  <h1 class="font-bold text-4xl" >GanttChart#index</h1>
-  <p>Find me in app/views/gantt_chart/index.html.erb</p>
-  
-  <svg id="gantt" data-controller="chart--gantt" name="<%= params[:project_id] %>"></svg>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css' %>
+  <%= javascript_include_tag 'https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js' %>
+<% end %>
 
-  <script>
-    var tasks = []
-    const projectId = document.getElementById('gantt').attributes['name'].value
-
-    function getTasks() {
-      const authenticityToken = document.querySelector("meta[name='csrf-token']").getAttribute('content');
-      fetch(`${window.location.protocol}//${window.location.host}/projects/${projectId}/tasks`, {
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': authenticityToken
-        }
-      })    
-      .then((response) => response.json())
-      .then(data => {
-        data.forEach(taskData => {
-          var task = {
-            id: taskData.id,
-            name: taskData.name,
-            start: taskData.start_date,
-            end: taskData.end_date,
-            progress: taskData.percentage_completed
-            // dependencies: taskData.dependencies
-          };
-
-          tasks.push(task);
-        });
-
-        initializeGantt();
-      });
-    }
-
-    function initializeGantt() {
-      var gantt = new Gantt("#gantt", tasks);
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      getTasks();
-    });
-  </script>
-
+<div class="flex justify-start space-x-4 md:space-x-32 items-center ml-5 my-2">
+  <%= link_to project_path(params[:project_id]), class: 'hover:underline inline-flex items-center text-sm md:text-md leading-4 font-bold rounded-lg text-blue-600 hover:text-blue-400' do %>
+    <span class="mr-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+      </svg>
+    </span>
+    Back to project
+  <% end %>
+  <h1 class="font-bold text-3xl m" >Gantt Chart</h1>
 </div>
+
+<div id="gantt_here" style='width:100%; height:800px;' data-controller="chart--gantt"></div>
