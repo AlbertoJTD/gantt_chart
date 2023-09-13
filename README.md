@@ -2,28 +2,38 @@
 - Ruby 3.1.2
 - Ruby on Rails 7.0.7.2
 - JDK 20
+- PostgreSQL
 
 ## Frameworks and libraries
 - [Ruby on Rails](https://rubyonrails.org)
 - [Stimulus.js](https://stimulus.hotwired.dev)
 - [Tailwindcss](https://tailwindui.com)
 - [Postgresql](https://postgresapp.com)
-- [Frappe.io](https://frappe.io/gantt)
+- [DHTMLX Gantt](https://docs.dhtmlx.com/gantt/)
 - [JDK 20](https://www.oracle.com/java/technologies/downloads/)
 - [mpxj](https://rubygems.org/gems/mpxj)
 
 ## Getting Started
-* Configuration
 
-* Database creation
-`rails db:create db:migrate`
+1. Install [JDK](https://www.oracle.com/java/technologies/downloads), this is required to use [mpxj](https://rubygems.org/gems/mpxj) gem
 
-* Database initialization
+2. Clone the repository
+```ruby
+git clone https://github.com/AlbertoJTD/gantt_chart.git
+cd gantt_chart
+```
 
-* How to run the test suite
+4. Install gems
+```ruby
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Create database and run migrations
+```ruby
+rails db:create db:migrate
+```
 
-* Deployment instructions
-
-* ...
+5. Run development server
+```ruby
+./bin/dev
+```
