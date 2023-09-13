@@ -7,6 +7,7 @@ class MppFileHandlerService
   def initialize(project)
     @project = project
     @mpp_file = nil
+    @last_task_id = Project.all.count == 1 ? 0 : Task.last.id
   end
 
   def read_project
@@ -63,7 +64,7 @@ class MppFileHandlerService
     if task.predecessors.count.positive?
       task.predecessors.each do |task_dependency|
         next unless source_task?(task_dependency)
-        Link.create(link_type: "0", source_id: source_task?(task_dependency).id, target_id: task.id, project_id: project_id)
+        Link.create(link_type: "0", source_id: source_task?(task_dependency).id + @last_task_id, target_id: task.id + @last_task_id, project_id: project_id)
       end
     end
 
