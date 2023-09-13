@@ -11,24 +11,27 @@ class GanttChartController < ApplicationController
     project = Project.find(params[:project_id])
     tasks = project.tasks
     links = project.links
- 
-    render :json=>{
-      :data => tasks.map { |task| {
-          :id => task.id,
-          :text => task.name,
-          :start_date => task.start_date.to_formatted_s(:db),
-          :duration => task.duration,
-          :progress => task.percentage_completed.to_f / 100,
-          :parent => task.parent_id,
-          :open => true
+
+    render json: {
+      data: tasks.map do |task|
+        {
+          id: task.id,
+          text: task.name,
+          start_date: task.start_date.to_formatted_s(:db),
+          duration: task.duration,
+          progress: task.percentage_completed.to_f / 100,
+          parent: task.parent_id,
+          open: true
         }
-      },
-      :links => links.map{|link|{
-        :id => link.id,
-        :source => link.source_id,
-        :target => link.target_id,
-        :type => link.link_type
-      }}
+      end,
+      links: links.map do |link|
+        {
+          id: link.id,
+          source: link.source_id,
+          target: link.target_id,
+          type: link.link_type
+        }
+      end
     }
   end
 end

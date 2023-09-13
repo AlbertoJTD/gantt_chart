@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropTaskDependencies < ActiveRecord::Migration[7.0]
   def up
     drop_table :task_dependencies

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSourceAndTargetFieldsToLinks < ActiveRecord::Migration[7.0]
   def change
     add_reference :links, :source, null: false, foreign_key: { to_table: :tasks }

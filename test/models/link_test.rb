@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: links
@@ -22,7 +24,7 @@
 #  fk_rails_...  (source_id => tasks.id)
 #  fk_rails_...  (target_id => tasks.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class LinkTest < ActiveSupport::TestCase
   # test "the truth" do
