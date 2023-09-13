@@ -1,11 +1,12 @@
 class LinkController < ApplicationController
-  before_action :set_link, only: %i[update delete]
+  before_action :link, only: %i[update delete]
   protect_from_forgery
  
   def update
-    link.source = params["source"]
-    link.target = params["target"]
+    link.source_id = params["source"]
+    link.target_id = params["target"]
     link.link_type = params["type"]
+    link.project_id = params[:project_id]
     link.save
 
     render :json => {:action => "updated"}
@@ -13,9 +14,10 @@ class LinkController < ApplicationController
 
   def add
     link = Link.create( 
-        :source => params["source"], 
-        :target => params["target"], 
-        :link_type => params["type"]
+        :source_id => params["source"], 
+        :target_id => params["target"], 
+        :link_type => params["type"],
+        :project_id => params[:project_id]
     )
 
     render :json => {:action => "inserted", :tid => link.id}
