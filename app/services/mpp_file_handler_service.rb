@@ -7,12 +7,14 @@ class MppFileHandlerService
   def initialize(project)
     @project = project
     @mpp_file = nil
+    @last_task_id = Project.all.count == 1 ? 0 : Task.last.id
   end
 
   def read_project
     @mpp_file = MPXJ::Reader.read(file_path, nil, :days)
     update_project!
     create_tasks!
+    create_links!
   end
 
   private
@@ -50,5 +52,30 @@ class MppFileHandlerService
 
   def task_completed?(task)
     task.percent_complete == 100
+  end
+
+  def create_links!
+    project_file_info.each do |task|
+      create_links_recursive(task, @project.id)
+    end
+  end
+
+  def create_links_recursive(task, project_id)
+    if task.predecessors.count.positive?
+      task.predecessors.each do |task_dependency|
+        next unless source_task?(task_dependency)
+        Link.create(link_type: "0", source_id: source_task?(task_dependency).id + @last_task_id, target_id: task.id + @last_task_id, project_id: project_id)
+      end
+    end
+
+    return unless task.child_tasks
+
+    task.child_tasks.each do |child|
+      create_links_recursive(child, project_id)
+    end
+  end
+
+  def source_task?(task_dependency)
+    @mpp_file.get_task_by_id(task_dependency.attribute_values['task_unique_id'])
   end
 end

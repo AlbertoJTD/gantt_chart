@@ -33,8 +33,6 @@ class Task < ApplicationRecord
   belongs_to :parent, class_name: 'Task', optional: true
   has_many :subtasks, class_name: 'Task', foreign_key: 'parent_id', dependent: :destroy
 
-  has_many :task_dependency, dependent: :destroy
-
   has_many :source_links, class_name: 'Link', foreign_key: :source_id, dependent: :destroy
   has_many :target_links, class_name: 'Link', foreign_key: :target_id, dependent: :destroy
 

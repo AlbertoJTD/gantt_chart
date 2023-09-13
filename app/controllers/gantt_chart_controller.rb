@@ -5,9 +5,10 @@ class GanttChartController < ApplicationController
 
   def index; end
 
-  def data 
-    tasks = Project.find(params[:project_id]).tasks
-    links = Link.all
+  def data
+    project = Project.find(params[:project_id])
+    tasks = project.tasks
+    links = project.links
  
     render :json=>{
       :data => tasks.map { |task| {
@@ -15,7 +16,7 @@ class GanttChartController < ApplicationController
           :text => task.name,
           :start_date => task.start_date.to_formatted_s(:db),
           :duration => task.duration,
-          :progress => task.percentage_completed,
+          :progress => task.percentage_completed.to_f / 100,
           :parent => task.parent_id,
           :open => true
         }

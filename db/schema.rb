@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_193058) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_13_042243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,16 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_193058) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "task_dependencies", force: :cascade do |t|
-    t.bigint "task_id", null: false
-    t.bigint "depends_on_task_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["depends_on_task_id"], name: "index_task_dependencies_on_depends_on_task_id"
-    t.index ["task_id", "depends_on_task_id"], name: "index_task_dependencies_on_task_id_and_depends_on_task_id", unique: true
-    t.index ["task_id"], name: "index_task_dependencies_on_task_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -93,8 +83,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_193058) do
   add_foreign_key "links", "projects"
   add_foreign_key "links", "tasks", column: "source_id"
   add_foreign_key "links", "tasks", column: "target_id"
-  add_foreign_key "task_dependencies", "tasks"
-  add_foreign_key "task_dependencies", "tasks", column: "depends_on_task_id"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "tasks", column: "parent_id"
 end
