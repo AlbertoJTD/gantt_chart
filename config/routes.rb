@@ -18,5 +18,8 @@ Rails.application.routes.draw do
     post '/link', to: 'link#add'
     put '/link/:id', to: 'link#update'
     delete '/link/:id', to: 'link#delete'
-  end 
+  end
+
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server_error'
 end
