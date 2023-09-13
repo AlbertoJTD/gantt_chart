@@ -3,7 +3,9 @@
 class GanttChartController < ApplicationController
   layout 'gantt'
 
-  def index; end
+  def index
+    @project = Project.find(params[:project_id])
+  end
 
   def data
     project = Project.find(params[:project_id])

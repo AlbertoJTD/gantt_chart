@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root 'projects#new'
 
-  resources :projects do
+  resources :projects, except: :show do
     resources :tasks, only: %i[index new]
     resources :gantt_chart, only: :index
   end
