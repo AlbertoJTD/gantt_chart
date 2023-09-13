@@ -43,11 +43,11 @@ class TasksController < ApplicationController
   end
 
   def add
-    task_created = task.create( 
+    task_created = Task.create( 
       :name => params["text"], 
       :start_date=> params["start_date"], 
       :duration => params["duration"],
-      :percentage_completed => params["progress"] || 0, 
+      :percentage_completed => params["progress"], 
       :parent_id => params["parent"]
     )
 
