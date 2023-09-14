@@ -1,3 +1,10 @@
+# Gantt chart
+<p align="center">
+  <img src="https://github.com/AlbertoJTD/gantt_chart/assets/89556233/aad13789-37eb-47cc-963f-870c0eebae3e" width="850" height="400" style="text-align:center;">
+</p>
+
+
+
 ## Minimal requirements
 - Ruby 3.1.2
 - Ruby on Rails 7.0.7.2
@@ -32,6 +39,9 @@ bundle install
 ```ruby
 rails db:create db:migrate
 ```
+
+
+
 
 5. Run development server
 ```ruby
